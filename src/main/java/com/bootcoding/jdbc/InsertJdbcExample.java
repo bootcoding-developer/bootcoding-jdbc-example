@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class UserJdbcExample {
+public class InsertJdbcExample {
 
     public static void main(String[] args) {
 
@@ -19,27 +19,11 @@ public class UserJdbcExample {
 
             // 3. Query Database using Statement Object
             Statement stmt = conn.createStatement();
-
+            String sql = "INSERT INTO customer VALUES(2000, 'Raju', 'Nagpur', 'raju@nagpur.com', 123)";
             // 4. Execute Query and Get ResultSet
-            ResultSet rs = stmt.executeQuery("SELECT * FROM customer");
+            int i = stmt.executeUpdate(sql);
             // 4.1 Extract Result
 
-            while(rs.next()){
-
-                // Single Row
-                int custId = rs.getInt("customer_id");
-                int custId2 = rs.getInt(1);
-                String name = rs.getString("cust_name");
-                String city = rs.getString("city");
-                String email = rs.getString("email");
-                int salesManId = rs.getInt("salesman_id");
-
-                System.out.println("Id = " + custId);
-                System.out.println("Name = " + name);
-                System.out.println("City = " + city);
-                System.out.println("Email = " + email);
-                System.out.println("SalesMan Id = " + salesManId);
-            }
 
             // 5.Connection CLose;
             conn.close();
