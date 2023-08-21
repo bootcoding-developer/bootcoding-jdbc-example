@@ -21,7 +21,7 @@ public class SelectJdbcExample {
             Statement stmt = conn.createStatement();
 
             // 4. Execute Query and Get ResultSet
-            ResultSet rs = stmt.executeQuery("SELECT * FROM customer where city= ");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM customer");
             // 4.1 Extract Result
 
             while(rs.next()){

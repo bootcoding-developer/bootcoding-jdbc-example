@@ -21,7 +21,7 @@ public class InsertJdbcExample {
             Statement stmt = conn.createStatement();
             String sql = "INSERT INTO customer VALUES(2000, 'Raju', 'Nagpur', 'raju@nagpur.com', 123)";
             // 4. Execute Query and Get ResultSet
-            int i = stmt.executeUpdate(sql);
+            stmt.executeUpdate(sql);
             // 4.1 Extract Result
 
 
