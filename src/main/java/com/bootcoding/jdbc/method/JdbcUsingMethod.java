@@ -6,10 +6,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class JdbcUsingMethod {
-
 
     public List<Customer> getAllCustomers(){
         try{
@@ -46,6 +47,31 @@ public class JdbcUsingMethod {
         }
         return null;
     }
+
+    // Get Customer Count by Salesman Id
+    public Map<Integer, Integer> getCustomerCountBySalesmanId(){
+        try{
+
+            Connection connection = DBConnectionUtils.getConnection();
+            Statement statement = connection.createStatement();
+            String query  =  "SELECT salesman_id, count(*) from customer group by salesman_id";
+            ResultSet rs = statement.executeQuery(query);
+
+            Map<Integer, Integer> map = new HashMap();
+            while(rs.next()){
+                int salesman_id = rs.getInt("salesman_id");
+                int count = rs.getInt("count");
+                map.put(salesman_id, count);
+            }
+
+            return map;
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
 
     public int getTotalCustomerCount(){
         try{
